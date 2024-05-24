@@ -1,7 +1,3 @@
-# Tauri + Vanilla TS
-
-This template should help get you started developing with Tauri in vanilla HTML, CSS and Typescript.
-
-## Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+# Matrix inverter
+minimal app to get the inverse of a 3x3 matrix fast and easy.
+![image](https://github.com/Imtiyaz0000/matrix-inverter/assets/159421205/ddad228c-fc0f-49b5-88ac-31294d40c7a2)
