@@ -42,7 +42,7 @@ enum Res {
     Msg(String)
 }
 
-// Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
+
 #[tauri::command]
 fn invert(mat: Vec<Vec<f64>>) -> String {
     let inverse = invert_matrix(mat);
