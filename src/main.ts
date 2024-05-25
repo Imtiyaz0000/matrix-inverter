@@ -1,15 +1,13 @@
 import { invoke } from "@tauri-apps/api/tauri";
 
-/*function matrixToString(matrix: number[][]): string {
-  let result = '';
-  for (let i = 0; i < matrix.length; i++) {
-    for (let j = 0; j < matrix[i].length; j++) {
-      result += matrix[i][j].toString() + '\t'; // Separate each element by a tab
-    }
-    result += '\n'; // Move to the next line after each row
+function isJsonArray(jsonString: string): boolean {
+  try {
+    const parsedValue = JSON.parse(jsonString);
+    return Array.isArray(parsedValue);
+  } catch (error) {
+    return false;
   }
-  return result;
-}*/
+}
 
 async function inverter() {
   let container = document.querySelector(".container");
@@ -26,24 +24,35 @@ async function inverter() {
   let result: string | number[][] = await invoke("invert", {
     mat: matrix,
   });
-  const display = document.querySelector(".display");
-  if (typeof(result) == "string") {
-    // @ts-ignore
-    display.textContent = result;
-  } else {
-    // @ts-ignore
-    display.innerHTML = `
-[${result[0][0]}][${result[0][1]}][${result[0][2]}]
-[${result[1][0]}][${result[1][1]}][${result[1][2]}]
-[${result[2][0]}][${result[2][1]}][${result[2][2]}]
-`;
+  //const display = document.querySelector(".display-wrapper");
+  const msg = document.querySelector(".msg");
+  if (typeof(result) == "string" && msg != null) {
+    if (isJsonArray(result)) {
+      msg.textContent = "";
+      result = JSON.parse(result);
+      console.log(result);
+      // @ts-ignore
+      document.querySelector(".or1c1").textContent = result[0][0].toFixed(4);
+      // @ts-ignore
+      document.querySelector(".or1c2").textContent = result[0][1].toFixed(4);
+      // @ts-ignore
+      document.querySelector(".or1c3").textContent = result[0][2].toFixed(4);
+      // @ts-ignore
+      document.querySelector(".or2c1").textContent = result[1][0].toFixed(4);
+      // @ts-ignore
+      document.querySelector(".or2c2").textContent = result[1][1].toFixed(4);
+      // @ts-ignore
+      document.querySelector(".or2c3").textContent = result[1][2].toFixed(4);
+      // @ts-ignore
+      document.querySelector(".or3c1").textContent = result[2][0].toFixed(4);
+      // @ts-ignore
+      document.querySelector(".or3c2").textContent = result[2][1].toFixed(4);
+      // @ts-ignore
+      document.querySelector(".or3c3").textContent = result[2][2].toFixed(4);
+    } else {
+      msg.textContent = result;
+    }
   }
-  /*if (greetMsgEl && greetInputEl) {
-    // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    greetMsgEl.textContent = await invoke("greet", {
-      name: greetInputEl.value,
-    });
-  }*/
 }
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -52,3 +61,4 @@ window.addEventListener("DOMContentLoaded", () => {
     inverter();
   });
 });
+
