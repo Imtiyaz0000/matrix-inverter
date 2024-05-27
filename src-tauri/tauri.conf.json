@@ -16,13 +16,17 @@
       "shell": {
         "all": false,
         "open": true
+      },
+      "window": {
+        "show": true
       }
     },
     "windows": [
       {
         "title": "matrix-inverter",
         "width": 800,
-        "height": 600
+        "height": 600,
+        "visible": false
       }
     ],
     "security": {

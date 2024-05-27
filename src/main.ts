@@ -1,4 +1,5 @@
 import { invoke } from "@tauri-apps/api/tauri";
+import { appWindow } from '@tauri-apps/api/window';
 
 function isJsonArray(jsonString: string): boolean {
   try {
@@ -56,6 +57,7 @@ async function inverter() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
+  appWindow.show();
   document.querySelector(".invert-form")?.addEventListener("submit", (e) => {
     e.preventDefault();
     inverter();
